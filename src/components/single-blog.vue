@@ -18,12 +18,15 @@ export default {
         }
     },
     created(){
+        this.$emit("toLoad" , true)
       this.$http.get("https://vue-blog2-9d4f3-default-rtdb.firebaseio.com/posts/" + this.id + ".json").then((data) => {
             return data.json()
         }).then((data) => {
             console.log(data)
             this.blog = data
-        })  
+        })  .then((data) => {
+            this.$emit("toLoad" , false)
+        })
     }
 }
 </script>
